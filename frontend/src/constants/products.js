@@ -1,0 +1,150 @@
+// products.js
+import sonyPlayStation from '../assets/images/products/sony-playstation-5-825-gb-wi-fi-black-white.jpg';
+import iphone15ProMax from '../assets/images/products/iphon15prm.jpg';
+import iphone14ProMax from '../assets/images/products/67873_iphone_14_pro_max_.png';
+import s23Ultra from '../assets/images/products/s23ultra.jpeg';
+import xiaomi13 from '../assets/images/products/cacmaucobantrenxiaomi13_1280x1412-800-resize.jpg';
+import asusRogAlly from '../assets/images/products/asus-rog-ally-x-00.jpg';
+import huaweiWatch from '../assets/images/products/huawei-watch-gt4-46-day-da-tb-1-600x600.jpg';
+import lgSmartTV from '../assets/images/products/smart-tivi-lg-4k-50-inch-50up7500ptc-1638169756.jpg';
+import samsungGalaxyM34 from '../assets/images/products/samsung-galaxy-m34-5g-m346b-8128g-blue_7355fb77.jpg';
+import sonyBluetoothHeadphones from '../assets/images/products/tai-nghe-bluetooth-chup-tai-sony-wh-ch520-thumb-600x600.jpg';
+import airpodsPro from '../assets/images/products/tai-nghe-bluetooth-airpods-pro-2nd-gen-usb-c-charge-apple-thumb-1-600x600.jpg';
+import { removeAccents } from '../utils/helpers';
+
+const products = [
+  {
+    title: 'Sony PlayStation 5 825 GB',
+    type: 'Game',
+    brand: 'Sony',
+    href: removeAccents('Sony PlayStation 5 825 GB').replaceAll(' ', '-'),
+    size: ['S', 'M', 'L'],
+    color: ['#ffffff', '#000000'],
+    regular_price: 699,
+    sale_price: 599,
+    img: sonyPlayStation,
+    desc: 'Trải nghiệm chơi game đỉnh cao với Sony PlayStation 5 825 GB. Được trang bị công nghệ đột phá, giúp tải nhanh hơn và chơi mượt mà hơn bao giờ hết.',
+  },
+  {
+    title: 'iPhone 15 Pro Max',
+    type: 'Phone',
+    brand: 'Iphone',
+    href: removeAccents('iPhone 15 Pro Max').replaceAll(' ', '-'),
+    size: ['128GB', '256GB', '512GB'],
+    color: ['#d74339', '#6fa9f4', '#11de65'],
+    regular_price: 1000,
+    sale_price: 899,
+    img: iphone15ProMax,
+    desc: 'iPhone 15 Pro Max với thiết kế sang trọng và hiệu năng vượt trội. Camera nâng cấp, pin lâu hơn và hệ điều hành iOS mới nhất mang lại trải nghiệm tuyệt vời.',
+  },
+  {
+    title: 'iPhone 14 Pro Max',
+    type: 'Phone',
+    brand: 'Iphone',
+    href: removeAccents('iPhone 14 Pro Max').replaceAll(' ', '-'),
+    size: ['128GB', '256GB', '512GB'],
+    color: ['#ff5733', '#f0e68c', '#708090'],
+    regular_price: 999,
+    sale_price: 899,
+    img: iphone14ProMax,
+    desc: 'iPhone 14 Pro Max với màn hình Super Retina XDR và chip A16 Bionic mạnh mẽ. Chụp ảnh chuyên nghiệp và trải nghiệm chơi game mượt mà không giới hạn.',
+  },
+  {
+    title: 'Samsung Galaxy S23 Ultra',
+    type: 'Phone',
+    brand: 'Samsung',
+    href: removeAccents('Samsung Galaxy S23 Ultra').replaceAll(' ', '-'),
+    size: ['256GB', '512GB', '1TB'],
+    color: ['#0000ff', '#ff0000', '#00ff00'],
+    regular_price: 1200,
+    sale_price: 1099,
+    img: s23Ultra,
+    desc: 'Samsung Galaxy S23 Ultra với camera đỉnh cao, màn hình AMOLED tuyệt đẹp và hiệu năng vượt trội. Hoàn hảo cho cả công việc và giải trí.',
+  },
+  {
+    title: 'Xiaomi 13',
+    type: 'Phone',
+    brand: 'Xiaomi',
+    href: removeAccents('Xiaomi 13').replaceAll(' ', '-'),
+    size: ['128GB', '256GB'],
+    color: ['#00bfff', '#ff1493', '#8a2be2'],
+    regular_price: 999,
+    sale_price: 899,
+    img: xiaomi13,
+    desc: 'Xiaomi 13 với thiết kế tinh tế, màn hình lớn và camera chất lượng cao. Sở hữu pin dung lượng lớn và hiệu năng mạnh mẽ cho mọi nhu cầu sử dụng.',
+  },
+  {
+    title: 'ASUS ROG Ally',
+    type: 'Game',
+    brand: 'Asus',
+    href: removeAccents('ASUS ROG Ally').replaceAll(' ', '-'),
+    size: ['S', 'M', 'L'],
+    color: ['#ffffff', '#333333'],
+    regular_price: 799,
+    sale_price: 699,
+    img: asusRogAlly,
+    desc: 'ASUS ROG Ally - thiết bị chơi game di động mạnh mẽ với cấu hình hàng đầu, cho phép bạn trải nghiệm game mọi lúc mọi nơi với đồ họa sắc nét và mượt mà.',
+  },
+  {
+    title: 'Huawei Watch GT4',
+    type: 'Watch',
+    brand: 'Huawei',
+    href: removeAccents('Huawei Watch GT4').replaceAll(' ', '-'),
+    size: ['42mm', '46mm'],
+    color: ['#000000', '#ffffff', '#f0e68c'],
+    regular_price: 299,
+    sale_price: 249,
+    img: huaweiWatch,
+    desc: 'Huawei Watch GT4 với thiết kế thanh lịch, theo dõi sức khỏe toàn diện và pin kéo dài. Đồng hồ thông minh lý tưởng cho mọi hoạt động hàng ngày.',
+  },
+  {
+    title: 'LG Smart TV 4K 50 inch',
+    type: 'TV',
+    brand: 'LG',
+    href: removeAccents('LG Smart TV 4K 50 inch').replaceAll(' ', '-'),
+    size: ['50 inch', '55 inch', '65 inch'],
+    color: ['#000000'],
+    regular_price: 699,
+    sale_price: 599,
+    img: lgSmartTV,
+    desc: 'LG Smart TV 4K 50 inch mang đến hình ảnh sắc nét và âm thanh sống động. Với tính năng thông minh tích hợp, bạn có thể dễ dàng truy cập các ứng dụng yêu thích.',
+  },
+  {
+    title: 'Samsung Galaxy M34 5G',
+    type: 'Phone',
+    brand: 'Samsung',
+    href: removeAccents('Samsung Galaxy M34 5G').replaceAll(' ', '-'),
+    size: ['128GB', '256GB'],
+    color: ['#4b0082', '#ff4500', '#32cd32'],
+    regular_price: 399,
+    sale_price: 349,
+    img: samsungGalaxyM34,
+    desc: 'Samsung Galaxy M34 5G với khả năng kết nối nhanh chóng, pin dung lượng lớn và camera chất lượng cao. Sự lựa chọn hoàn hảo cho người dùng trẻ tuổi.',
+  },
+  {
+    title: 'Sony Bluetooth Headphones',
+    type: 'Headphone',
+    brand: 'Sony',
+    href: removeAccents('Sony Bluetooth Headphones').replaceAll(' ', '-'),
+    size: ['S', 'M', 'L'],
+    color: ['#ffffff', '#000000', '#ff6347'],
+    regular_price: 149,
+    sale_price: 129,
+    img: sonyBluetoothHeadphones,
+    desc: 'Sony Bluetooth Headphones mang lại âm thanh chất lượng cao và thiết kế thoải mái. Kết nối không dây tiện lợi, lý tưởng cho cả công việc và giải trí.',
+  },
+  {
+    title: 'AirPods Pro 2nd Gen',
+    type: 'Headphone',
+    brand: 'Iphone',
+    href: removeAccents('AirPods Pro 2nd Gen').replaceAll(' ', '-'),
+    size: ['S', 'M', 'L'],
+    color: ['#ffffff'],
+    regular_price: 249,
+    sale_price: 199,
+    img: airpodsPro,
+    desc: 'AirPods Pro 2nd Gen với tính năng chống ồn chủ động, âm thanh trong trẻo và thiết kế vừa vặn. Trải nghiệm âm nhạc không giới hạn mọi lúc mọi nơi.',
+  },
+];
+
+export default products;

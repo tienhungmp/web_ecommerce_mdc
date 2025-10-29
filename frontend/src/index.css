@@ -1,0 +1,113 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("/fonts/Gilroy-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: "Gilroy", sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  width: 100%;
+}
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  opacity: 1;
+  background-color: transparent;
+}
+
+.ql-container.ql-snow {
+  min-height: 500px;
+}
+
+/* CSS cho các kích thước chữ tùy chỉnh */
+.ql-size-10px {
+  font-size: 10px !important;
+}
+.ql-size-12px {
+  font-size: 12px !important;
+}
+.ql-size-14px {
+  font-size: 14px !important;
+}
+.ql-size-16px {
+  font-size: 16px !important;
+}
+.ql-size-18px {
+  font-size: 18px !important;
+}
+.ql-size-24px {
+  font-size: 24px !important;
+}
+.ql-size-36px {
+  font-size: 36px !important;
+}
+.ql-size-48px {
+  font-size: 48px !important;
+}
+
+/* Đảm bảo bạn có các font này trong CSS của bạn */
+
+/* Sử dụng các font trong Quill */
+.ql-font-lato,
+.ql-font span[data-value="Lato"]::before {
+  font-family: 'Lato', sans-serif;
+}
+
+.ql-font-Inter,
+.ql-font span[data-value="Inter"]::before {
+  font-family: 'Inter', sans-serif;
+}
+
+.ql-font-roboto,
+.ql-font span[data-value="Roboto"]::before {
+  font-family: 'Roboto', sans-serif !important;
+}
+
+.ql-font-nunito-sans,
+.ql-font span[data-value="Nunito Sans"]::before {
+  font-family: 'Nunito Sans', sans-serif;
+}
+
+.ql-font-gilroy,
+.ql-font span[data-value="Gilroy"]::before {
+  font-family: 'Gilroy', sans-serif;
+}
+
+.ql-clipboard {
+  position: fixed !important;
+  left: 50% !important;
+  top: 50% !important;
+  display: none;
+}
+
+.ql-container{
+  font-family: unset !important;
+}
