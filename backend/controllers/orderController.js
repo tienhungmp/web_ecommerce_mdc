@@ -3,6 +3,7 @@ const CustomError = require("../errors");
 const { StatusCodes } = require("http-status-codes");
 const Warranty = require("../models/warrantyModel");
 const Product = require("../models/productModel");
+const { ProductCode, VnpLocale, dateFormat, VNPay, ignoreLogger } = require('vnpay');
 
 const createOrder = async (req, res) => {
   const { products, shippingAddress, discount, phone, email, paymentMethod } = req.body;
@@ -264,6 +265,57 @@ const getOrdersByStatus = async (req, res) => {
   }
 };
 
+// Create order with vnpay
+const vnpay = new VNPay({
+  tmnCode: "H0CR4KOU",
+  secureSecret: "BK3LD51V5KHBV5TWWNYNQGN0XASUV7ZU",
+  vnpayHost: 'https://sandbox.vnpayment.vn',
+  testMode: true, // tùy chọn, ghi đè vnpayHost thành sandbox nếu là true
+  hashAlgorithm: 'SHA512', // tùy chọn
+  enableLog: true, // tùy chọn
+  loggerFn: ignoreLogger, // tùy chọn
+  endpoints: {
+      paymentEndpoint: 'paymentv2/vpcpay.html',
+      queryDrRefundEndpoint: 'merchant_webapi/api/transaction',
+      getBankListEndpoint: 'qrpayauth/api/merchant/get_bank_list',
+  }, // tùy chọn
+});
+
+const createOrderWithVnpay = async (req, res) => {
+  const {totalPrice, orderId} = req.body;
+
+  // Time End
+  const timeEnd = new Date();
+  timeEnd.setMinutes(timeEnd.getMinutes() + 30);
+
+  const order = await Order.findById(orderId);
+
+  if (!order) {
+    return res.status(StatusCodes.NOT_FOUND).json({ message: 'Order not found' });
+  }
+
+  console.log(order);
+
+
+  try {
+    const paymentUrl = vnpay.buildPaymentUrl({
+      vnp_Amount: totalPrice,
+      vnp_IpAddr: '13.160.92.202',
+      vnp_TxnRef: orderId,
+      vnp_OrderInfo: 'Thanh toan don hang 123456',
+      vnp_OrderType: ProductCode.Other,
+      vnp_ReturnUrl: `http://localhost:5173/cart/checkout/order-received/${orderId}`,
+      vnp_Locale: VnpLocale.VN,
+      vnp_CreateDate: dateFormat(new Date()),
+      vnp_ExpireDate: dateFormat(timeEnd),
+    });
+  
+    res.status(StatusCodes.OK).json({ paymentUrl });
+  } catch (error) {
+    res.status(StatusCodes.BAD_REQUEST).json({ message: 'Internal Server Error' });
+  }
+}
+
 module.exports = {
   createOrder,
   getOrderCurrentUser,
@@ -272,4 +324,5 @@ module.exports = {
   deleteOrder,
   getOrdersByStatus,
   getAllOrders,
+  createOrderWithVnpay
 };

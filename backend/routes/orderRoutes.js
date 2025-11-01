@@ -12,14 +12,18 @@ const {
   deleteOrder,
   getOrdersByStatus,
   getAllOrders,
+  createOrderWithVnpay
 } = require("../controllers/orderController");
 
 router
   .route("/")
   .get([authenticateUser, authorizePermissions("admin")], getAllOrders)
   .post(authenticateUser, createOrder);
-  router
+
+router
   .route("/guest").post(createOrder);
+  
+router.route("/payment_vnpay").post(createOrderWithVnpay);
 
 router.route("/my_orders").get(authenticateUser, getOrderCurrentUser);
 

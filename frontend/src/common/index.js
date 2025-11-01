@@ -159,6 +159,10 @@ const SummaryApi = {
     url: `${backendDomain}/api/v1/orders/:id`,
     method: "GET",
   },
+  paymentVnpay: {
+    url: `${backendDomain}/api/v1/orders/payment_vnpay`,
+    method: "POST",
+  },
 
   deleteOrderById: {
     url: `${backendDomain}/api/v1/orders/:id`,

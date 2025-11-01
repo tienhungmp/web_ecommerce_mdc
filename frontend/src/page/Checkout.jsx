@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import {
   Link,
@@ -217,7 +217,6 @@ function Checkout() {
         withCredentials: true,
       });
 
-      toast.success("Đặt hàng thành công!");
 
       if (userData) {
         if (!state?.id) {
@@ -233,10 +232,34 @@ function Checkout() {
         setCart([]);
       }
 
-      setTimeout(() => {
-        setLoading(false);
-        navigate(`/cart/checkout/order-received/${response?.data?.order?._id}`);
-      }, 800);
+      if (selectedOption === 'vnpay') {
+        try {
+          const responseVnpay = await axios({
+            url: SummaryApi.paymentVnpay.url,
+            method: SummaryApi.paymentVnpay.method,
+            data: {
+              orderId: response?.data?.order?._id,
+              totalPrice: totalPrice,
+            },
+            withCredentials: true,
+          });
+          
+          setLoading(false);
+          window.location.href = responseVnpay?.data?.paymentUrl;
+        } catch (error) {
+          setLoading(false);
+          console.error("Error during checkout:", error);
+          toast.error("Có lỗi xảy ra khi đặt hàng. Vui lòng thử lại.");
+        }
+
+      } else {
+        toast.success("Đặt hàng thành công!");
+        setTimeout(() => {
+          setLoading(false);
+          navigate(`/cart/checkout/order-received/${response?.data?.order?._id}`);
+        }, 800);
+      }
+
     } catch (error) {
       setLoading(false);
       console.error("Error during checkout:", error);
@@ -370,6 +393,29 @@ function Checkout() {
                   htmlFor="cod"
                 >
                   Thanh toán khi nhận hàng
+                </label>
+              </div>
+
+              <div className="flex items-center mt-6">
+                <label
+                  className="relative flex items-center cursor-pointer"
+                  htmlFor="vnpay"
+                >
+                  <input
+                    name="checkout"
+                    type="radio"
+                    className="peer h-5 w-5 cursor-pointer appearance-none rounded-full border border-slate-300 checked:border-slate-400 transition-all"
+                    id="vnpay"
+                    checked={selectedOption === "vnpay"}
+                    onChange={() => setSelectedOption("vnpay")}
+                  />
+                  <span className="absolute bg-slate-800 w-3 h-3 rounded-full opacity-0 peer-checked:opacity-100 transition-opacity duration-200 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></span>
+                </label>
+                <label
+                  className="ml-2 text-slate-600 cursor-pointer text-sm"
+                  htmlFor="vnpay"
+                >
+                  Thanh toán qua VNPay
                 </label>
               </div>
             </div>

@@ -1,10 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdCheckmarkCircleOutline } from "react-icons/io";
-import { Link, useParams } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { SummaryApi } from "../../common";
 
 function OrderReceived() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const vnpayStatus = queryParams.get('vnp_ResponseCode');
   const { id } = useParams();
   const [orderDetails, setOrderDetails] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,6 +35,8 @@ function OrderReceived() {
     switch (paymentMethod) {
       case 'cod':
         return 'Thanh toán khi nhận hàng';
+      case 'vnpay':
+        return 'Thanh toán qua VNPay';
       case 'bank':
         return 'Chuyển khoản ngân hàng';
       case 'gop6':
@@ -50,6 +55,22 @@ function OrderReceived() {
       showOrder(id);
     }
   }, [id]);
+
+  if (orderDetails?.paymentMethod === 'vnpay' && vnpayStatus !== '00') {
+    return (
+      <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-10">
+        <div className="bg-red-100 text-center text-red-800 p-6">
+          <div className="flex items-center gap-4 justify-center">
+            <IoMdCheckmarkCircleOutline size={50} />
+            <h2 className="text-xl font-semibold">Thanh toán không thành công!</h2>
+          </div>
+          <p className="mt-2">
+            Đã có lỗi xảy ra trong quá trình thanh toán. Vui lòng thử lại sau.
+          </p>
+        </div>
+      </div> 
+    )
+  };
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-10">

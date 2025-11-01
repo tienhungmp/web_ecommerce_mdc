@@ -15,8 +15,28 @@ import { HiOutlineWrenchScrewdriver } from "react-icons/hi2";
 import { VscFeedback } from "react-icons/vsc";
 import { TfiCommentAlt, TfiWrite } from "react-icons/tfi";
 import { IoMdImages } from "react-icons/io";
+import axios from "axios";
+import { SummaryApi } from "../../common";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
+
+  const handleLogout = async () => {
+    try {
+      await axios({
+        url: SummaryApi.logout.url,
+        method: SummaryApi.logout.method,
+        withCredentials: true,
+        credentials: "include",
+      });
+
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   const menuItems = [
     // {
     //   label: "Bảng điều khiển",
@@ -63,11 +83,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
       icon: <TfiCommentAlt size={25} />,
       link: "/admin/reviews",
     },
-    {
-      label: "Bài viết",
-      icon: <TfiWrite size={25} />,
-      link: "https://ondia.vn/wp-login.php",
-    },
+    // {
+    //   label: "Bài viết",
+    //   icon: <TfiWrite size={25} />,
+    //   link: "https://ondia.vn/wp-login.php",
+    // },
     {
       label: "Banner",
       icon: <IoMdImages size={25} />,
@@ -79,7 +99,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     <div
       className={`${
         sidebarOpen ? "w-52" : "w-20"
-      } text-white shadow-md transition-all duration-300`}
+      } h-screen text-white shadow-md transition-all duration-300`}
     >
       <div className="relative flex justify-center">
         <NavLink to="/">
@@ -133,6 +153,41 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
             </NavLink>
           </li>
         ))}
+        {/* Logout button */}
+        <li
+          className={`flex items-center ${
+            sidebarOpen ? "justify-start" : "justify-center"
+          } gap-2 py-2 cursor-pointer`}
+        >
+          <NavLink
+            onClick={handleLogout}
+            className="flex items-center gap-2 w-full py-2 px-4 rounded border-b border-transparent text-gray-500 hover:text-primary hover:border-b-primary"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth={2}
+              stroke="currentColor"
+              className="w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+              />
+            </svg>
+            <span
+              className={`${
+                !sidebarOpen
+                  ? "hidden opacity-0 transform scale-75"
+                  : "opacity-100 transform scale-100"
+              } transition-all duration-300`}
+            >
+              Đăng xuất
+            </span>
+          </NavLink>
+        </li>
       </ul>
     </div>
   );
