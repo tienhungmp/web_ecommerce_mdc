@@ -72,7 +72,7 @@ function MyAccount() {
            {
             user?.role === ROLE.ADMIN && ( <li>
               <NavLink
-                to="/admin/users"
+                to="/admin/statistics"
                 className={({ isActive }) =>
                   `flex items-center justify-center lg:justify-start gap-2 px-1 lg:px-6 py-2 cursor-pointer hover:text-primary ${
                     isActive ? "text-primary border-b border-b-primary" : ""

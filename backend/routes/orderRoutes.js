@@ -12,7 +12,8 @@ const {
   deleteOrder,
   getOrdersByStatus,
   getAllOrders,
-  createOrderWithVnpay
+  createOrderWithVnpay,
+  updatePaymentStatus
 } = require("../controllers/orderController");
 
 router
@@ -26,6 +27,11 @@ router
 router.route("/payment_vnpay").post(createOrderWithVnpay);
 
 router.route("/my_orders").get(authenticateUser, getOrderCurrentUser);
+
+
+router.route("/delete/:id").delete(deleteOrder);
+
+router.route("/update-payment-status/:id").patch(updatePaymentStatus);
 
 router
   .route("/:id")

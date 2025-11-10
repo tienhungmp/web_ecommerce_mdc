@@ -41,6 +41,7 @@ import Guide from "./page/Policy/Guide.jsx";
 import PaymentMethods from "./page/Policy/PaymentMethods.jsx";
 import ShippingAndDelivery from "./page/Policy/ShippingAndDelivery.jsx";
 import BannerManagement from "./page/admin/banner/BannerManagement.jsx";
+import StatisticsManagement from "./page/admin/statistic/StatisticsManagement.jsx";
 
 
 const router = createBrowserRouter([
@@ -101,6 +102,7 @@ const router = createBrowserRouter([
       { path: "feedbacks", element: <FeedBackManagement />},
       { path: "reviews", element: <ReviewManagement />},
       { path: "banner", element: <BannerManagement />},
+      { path: "statistics", element: <StatisticsManagement /> },
     ],
   },
   {

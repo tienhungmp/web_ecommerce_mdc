@@ -168,8 +168,16 @@ const SummaryApi = {
     url: `${backendDomain}/api/v1/orders/:id`,
     method: "DELETE",
   },
+  deleteOrderByIdNoAuthen: {
+    url: `${backendDomain}/api/v1/orders/delete/:id`,
+    method: "DELETE",
+  },
   cancelOrder: {
     url: `${backendDomain}/api/v1/orders/status/:id`,
+    method: "PATCH",
+  },
+  updatePaymentStatus: {
+    url: `${backendDomain}/api/v1/orders/update-payment-status/:id`,
     method: "PATCH",
   },
 
@@ -291,6 +299,39 @@ const SummaryApi = {
   deleteFeedBack:{
     url: `${backendDomain}/api/v1/feedback/:id`,
     method: "DELETE",
+  },
+
+  statistics: {
+    // Lấy tất cả thống kê
+    all: {
+      url: `${backendDomain}/api/v1/statistics/all`,
+      method: "GET",
+    },
+    // Thống kê tổng quan
+    overview: {
+      url: `${backendDomain}/api/v1/statistics/overview`,
+      method: "GET",
+    },
+    // Doanh thu theo tháng
+    revenueByMonth: {
+      url: `${backendDomain}/api/v1/statistics/revenue-by-month`,
+      method: "GET",
+    },
+    // Top sản phẩm bán chạy
+    topProducts: {
+      url: `${backendDomain}/api/v1/statistics/top-products`,
+      method: "GET",
+    },
+    // Doanh thu theo danh mục
+    revenueByCategory: {
+      url: `${backendDomain}/api/v1/statistics/revenue-by-category`,
+      method: "GET",
+    },
+    // Trạng thái đơn hàng
+    orderStatus: {
+      url: `${backendDomain}/api/v1/statistics/order-status`,
+      method: "GET",
+    },
   },
 };
 

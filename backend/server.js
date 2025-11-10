@@ -36,6 +36,7 @@ const discountRouter = require("./routes/discountRoutes")
 const warrantyRouter = require("./routes/warrantyRoutes")
 const feedbackRouter = require("./routes/feedbackRoutes")
 const bannerRouter = require("./routes/bannerRoutes")
+const statisticsRoutes = require("./routes/statisticsRoutes")
 // Require Middleware
 const notFoundMiddleware = require("./middleware/not-found")
 const errorHandlerMiddleware = require("./middleware/error-handler")
@@ -71,6 +72,7 @@ app.use("/api/v1/discounts", discountRouter)
 app.use("/api/v1/warranty", warrantyRouter)
 app.use("/api/v1/feedback", feedbackRouter)
 app.use("/api/v1/banner", bannerRouter)
+app.use("/api/v1/statistics", statisticsRoutes);
 // Invoke Middleware
 app.use(notFoundMiddleware)
 app.use(errorHandlerMiddleware)

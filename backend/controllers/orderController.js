@@ -294,15 +294,12 @@ const createOrderWithVnpay = async (req, res) => {
     return res.status(StatusCodes.NOT_FOUND).json({ message: 'Order not found' });
   }
 
-  console.log(order);
-
-
   try {
     const paymentUrl = vnpay.buildPaymentUrl({
       vnp_Amount: totalPrice,
       vnp_IpAddr: '13.160.92.202',
       vnp_TxnRef: orderId,
-      vnp_OrderInfo: 'Thanh toan don hang 123456',
+      vnp_OrderInfo: 'Thanh toan don hang',
       vnp_OrderType: ProductCode.Other,
       vnp_ReturnUrl: `http://localhost:5173/cart/checkout/order-received/${orderId}`,
       vnp_Locale: VnpLocale.VN,
@@ -316,6 +313,35 @@ const createOrderWithVnpay = async (req, res) => {
   }
 }
 
+const updatePaymentStatus = async (req, res) => {
+  const { id: orderId } = req.params;
+  const { paymentStatus } = req.body;
+
+  if (!paymentStatus) {
+    throw new CustomError.BadRequestError(
+      "Please provide a valid payment status"
+    );
+  }
+
+  const validPaymentStatuses = ["Pending", "Paid", "Failed", "Refunded"];
+  if (!validPaymentStatuses.includes(paymentStatus)) {
+    throw new CustomError.BadRequestError("Invalid payment status");
+  }
+  const updateData = {};
+  if (paymentStatus) updateData.paymentStatus = paymentStatus;
+
+  const order = await Order.findByIdAndUpdate(orderId, updateData, {
+    new: true,
+    runValidators: true,
+  });
+
+  if (!order) {
+    throw new CustomError.BadRequestError(`No order with id ${orderId}`);
+  }
+
+  res.status(StatusCodes.OK).json({ order });
+}
+
 module.exports = {
   createOrder,
   getOrderCurrentUser,
@@ -324,5 +350,6 @@ module.exports = {
   deleteOrder,
   getOrdersByStatus,
   getAllOrders,
-  createOrderWithVnpay
+  createOrderWithVnpay,
+  updatePaymentStatus
 };

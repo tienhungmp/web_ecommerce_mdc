@@ -13,6 +13,38 @@ function OrderReceived() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  const handleDeleteOrder = async (orderId) => {
+    try {
+      const response = await axios({
+        url: SummaryApi.deleteOrderByIdNoAuthen.url.replace(":id", orderId),
+        method: SummaryApi.deleteOrderByIdNoAuthen.method,
+        withCredentials: true,
+      });
+
+      if (response.status === 200) {
+        console.log("Đã xóa đơn hàng thành công!");
+      }
+    } catch (error) {
+      console.error("Lỗi khi xóa đơn hàng:", error);
+    }
+  }
+
+  const handleUpdatePaymentStatus= async (orderId, newStatus) => {
+    try {
+      const response = await axios({
+        url: SummaryApi.updatePaymentStatus.url.replace(":id", orderId),
+        method: SummaryApi.updatePaymentStatus.method,
+        withCredentials: true,
+        data: { paymentStatus: newStatus },
+      })
+      if (response.status === 200) {
+        console.log("Đã cập nhật trạng thái thanh toán thành công!");
+      }
+    } catch (error) {
+      console.error("Lỗi khi cập nhật trạng thái thanh toán:", error);
+    }
+  }
+
   const showOrder = async (orderId) => {
     setLoading(true);
     setError(null);
@@ -56,21 +88,28 @@ function OrderReceived() {
     }
   }, [id]);
 
-  if (orderDetails?.paymentMethod === 'vnpay' && vnpayStatus !== '00') {
-    return (
-      <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-10">
-        <div className="bg-red-100 text-center text-red-800 p-6">
-          <div className="flex items-center gap-4 justify-center">
-            <IoMdCheckmarkCircleOutline size={50} />
-            <h2 className="text-xl font-semibold">Thanh toán không thành công!</h2>
+  if (orderDetails?.paymentMethod === 'vnpay') {
+    if(vnpayStatus !== '00') {
+      handleDeleteOrder(id);
+
+      return (
+        <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-10">
+          <div className="bg-red-100 text-center text-red-800 p-6">
+            <div className="flex items-center gap-4 justify-center">
+              <IoMdCheckmarkCircleOutline size={50} />
+              <h2 className="text-xl font-semibold">Thanh toán không thành công!</h2>
+            </div>
+            <p className="mt-2">
+              Đã có lỗi xảy ra trong quá trình thanh toán. Vui lòng thử lại sau.
+            </p>
           </div>
-          <p className="mt-2">
-            Đã có lỗi xảy ra trong quá trình thanh toán. Vui lòng thử lại sau.
-          </p>
-        </div>
-      </div> 
-    )
+        </div> 
+      )
+    } else {
+      handleUpdatePaymentStatus(id, 'Paid');
+    }
   };
+
 
   return (
     <div className="max-w-screen-xl mx-auto px-4 lg:px-0 py-10">

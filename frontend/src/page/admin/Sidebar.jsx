@@ -17,6 +17,7 @@ import { TfiCommentAlt, TfiWrite } from "react-icons/tfi";
 import { IoMdImages } from "react-icons/io";
 import axios from "axios";
 import { SummaryApi } from "../../common";
+import {FaChartLine } from "react-icons/fa";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 
@@ -43,6 +44,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     //   icon: <AiOutlineControl size={25} />,
     //   link: "/admin",
     // },
+    {
+      label: "Thống kê",
+      icon: <FaChartLine size={25} />,
+      link: "/admin/statistics",
+    },
     {
       label: "Quản lý người dùng",
       icon: <FaUsersGear size={25} />,
