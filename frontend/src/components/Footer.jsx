@@ -16,47 +16,31 @@ import img6 from "../assets/images/Dia-chi-web-06.png";
 import { Link } from "react-router-dom";
 
 function Footer() {
-  const pageUrl = "https://www.facebook.com/profile.php?id=61556754290337";
-  const width = 300;
-  const height = 200;
-  const appId = "495054187500003";
   const locations = [
-    {
-      image: img1,
-      address: "193-195 Hoàng Văn Thụ, TP Bắc Giang",
-      phone: "020 4633 1666",
-      hours: "Giờ mở cửa: 8h-22h",
-    },
-    {
-      image: img2,
-      address: "Tầng 2, GO Mall, Tân Tiến, TP Bắc Giang",
-      phone: "020 4652 1666",
-      hours: "Giờ mở cửa: 8h-22h",
-    },
-    {
-      image: img3,
-      address: "Số 703 Minh Khai, TT Chũ, Lục Ngạn, Bắc Giang",
-      phone: "0204 6531 666",
-      hours: "Giờ mở cửa: 7h-21h30",
-    },
-    {
-      image: img4,
-      address: "Số 520 Hoàng Văn Thái, TT Thắng, Hiệp Hòa, Bắc Giang",
-      phone: "0204 6299 666",
-      hours: "Giờ mở cửa: 7h-21h30",
-    },
-    {
-      image: img5,
-      address: "Tầng 2, Vincom Plaza Bắc Giang",
-      phone: "0865339192",
-      hours: "Giờ mở cửa: 8h-22h",
-    },
-    {
-      image: img6,
-      address: "Tầng 2, Vincom Plaza Bắc Giang",
-      phone: "0865339192",
-      hours: "Giờ mở cửa: 8h-22h",
-    },
+    // {
+    //   image: img3,
+    //   address: "Tầng 2, Vincom Plaza Hà Nội",
+    //   phone: "0204 6531 666",
+    //   hours: "Giờ mở cửa: 7h-21h30",
+    // },
+    // {
+    //   image: img4,
+    //   address: "Tầng 2, Vincom Plaza Hà Nội",
+    //   phone: "0204 6299 666",
+    //   hours: "Giờ mở cửa: 7h-21h30",
+    // },
+    // {
+    //   image: img5,
+    //   address: "Tầng 2, Vincom Plaza Hà Nội",
+    //   phone: "0865339192",
+    //   hours: "Giờ mở cửa: 8h-22h",
+    // },
+    // {
+    //   image: img6,
+    //   address: "Tầng 2, Vincom Plaza Hà Nội",
+    //   phone: "0865339192",
+    //   hours: "Giờ mở cửa: 8h-22h",
+    // },
   ];
 
   return (
@@ -77,15 +61,13 @@ function Footer() {
             <MdOutlineMailOutline size={20} />
             Email: smarthomevn2022@gmail.com
           </p>
-          <a href="http://online.gov.vn/(X(1)S(c00f5rff5upbplg4d1rvdfaw))/Home/WebDetails/105598?AspxAutoDetectCookieSupport=1">
-            <img
-              alt="Đã thông báo Bộ Công Thương"
-              className="mb-4"
-              height="50"
-              src={bocongthuong}
-              width="150"
-            />
-          </a>
+          <img
+            alt="Đã thông báo Bộ Công Thương"
+            className="mb-4"
+            height="50"
+            src={bocongthuong}
+            width="150"
+          />
         </div>
         <div>
           <h2 className="font-semibold text-lg mb-4">Chính sách</h2>
@@ -116,29 +98,17 @@ function Footer() {
         <div>
           <h2 className="font-semibold text-lg mb-4">Liên Kết</h2>
           <ul className="list-disc pl-6 list-inside space-y-4">
-            <li className="hover:text-primary">
-              <a href="https://ondia.vn/tin-hot/">Tin hot</a>
-            </li>
-            <li className="hover:text-primary">
-              <a href="https://ondia.vn/meo-vat/">Mẹo vặt</a>
-            </li>
-            <li className="hover:text-primary">
-              <a href="https://ondia.vn/khuyen-mai/">Khuyến mãi</a>
-            </li>
+            <li className="hover:text-primary">Tin hot</li>
+            <li className="hover:text-primary">Mẹo vặt</li>
+            <li className="hover:text-primary">Khuyến mãi</li>
           </ul>
         </div>
         <div>
-          <iframe
-            title="Facebook Page Plugin"
-            src={`https://www.facebook.com/plugins/page.php?href=${encodeURIComponent(
-              pageUrl
-            )}&tabs=timeline&width=${width}&height=${height}&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId=${appId}`}
-            width={width}
-            height={height}
-            style={{ border: "none", overflow: "hidden" }}
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            allowFullScreen={true}
-          ></iframe>
+          <p className="font-semibold text-lg mb-4">Địa chất học – Đồ án tốt nghiệp</p>
+          <p className="mb-2">Sinh viên: Nguyễn Văn A</p>
+          <p className="mb-2">MSSV: 20210601</p>
+          <p className="mb-2">GVHD: TS. Trần Thị B</p>
+          <p className="mb-2">Khoa: Khoa học Trái đất & Tài nguyên</p>
         </div>
       </div>
       <div className="max-w-screen-2xl bg-transparent text-[15px] font-normal mx-auto py-12 grid grid-cols-1 lg:grid-cols-4 gap-8">

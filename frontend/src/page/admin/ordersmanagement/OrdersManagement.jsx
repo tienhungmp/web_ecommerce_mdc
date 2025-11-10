@@ -16,6 +16,8 @@ const OrdersManagement = () => {
   const [editedStatus, setEditedStatus] = useState("");
   const getPaymentMethodText = (paymentMethod,totalPrice) => {
     switch (paymentMethod) {
+      case 'vnpay':
+        return 'Thanh toán qua VNPay';
       case 'cod':
         return 'Thanh toán khi nhận hàng';
       case 'bank':

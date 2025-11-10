@@ -3,7 +3,7 @@ import './style.css'; // Import file CSS riêng
 
 const ZaloButton = () => {
   const handleZaloClick = () => {
-    window.open('https://zalo.me/0988917388', '_blank');
+    window.open('https://zalo.me/0867266604', '_blank');
   };
 
   return (
